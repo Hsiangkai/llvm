@@ -408,8 +408,7 @@ class DwarfDebug : public DebugHandlerBase {
     return InfoHolder.getUnits();
   }
 
-  using InlinedVariable = DbgValueHistoryMap::InlinedVariable;
-  using InlinedLabel = DbgLabelInstrMap::InlinedLabel;
+  using InlinedEntity = DbgValueHistoryMap::InlinedEntity;
 
   void ensureAbstractEntityIsCreated(DwarfCompileUnit &CU,
                                      const DINode *Node,
@@ -552,7 +551,7 @@ class DwarfDebug : public DebugHandlerBase {
 
   /// Populate LexicalScope entries with variables' info.
   void collectEntityInfo(DwarfCompileUnit &TheCU, const DISubprogram *SP,
-                         DenseSet<InlinedVariable> &ProcessedVars);
+                         DenseSet<InlinedEntity> &ProcessedVars);
 
   /// Build the location list for all DBG_VALUEs in the
   /// function that describe the same variable.
@@ -561,7 +560,7 @@ class DwarfDebug : public DebugHandlerBase {
 
   /// Collect variable information from the side table maintained by MF.
   void collectVariableInfoFromMFTable(DwarfCompileUnit &TheCU,
-                                      DenseSet<InlinedVariable> &P);
+                                      DenseSet<InlinedEntity> &P);
 
   /// Emit the reference to the section.
   void emitSectionReference(const DwarfCompileUnit &CU);
